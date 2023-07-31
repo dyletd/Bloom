@@ -1,0 +1,21 @@
+class BloomFilter:
+  Dùnng 2 hàm hash để thiết lập bloom với ác bitset, số phần tử và số âm tính giả
+  các hàm dùng để thêm tài khoản(add), kiểm tra tồn tại(contains) 
+class AccoungMange
+Chức các hàm xây dựng giao diện cũng như các hàm kiểm tra các điều kiện của mật khẩu và tên người dùng, thựuc hiện các chức năng yêu cầu:
+  SingUp, hàm lưu các tài khoản tạo thành công
+  Failed lưu các hàm đk không thành công
+  ChangeFile ghi lại mật khẩu cũ vào file trước đó(cách này chưa tối ưu lắm, nghe đồn có cách hay hơn )
+  checkWeak:kiểm tra mật khẩu có nằm trong file mật khẩu yếu không
+  registerAccount: dùng các hàm condit_password và condit_username và bộ lọc Bloom Kiểm tra các điều kiện của mật khẩu và tên người dùng để taajo tài khoản, nếu tên đã tồn tại hoặc các nguyên tắc khác bị vi phạm thì không tạo đưuojc, lưu tài khoản không tạo được vào file Failed.txt,ngươc và cho mọi người chọn trở về home;
+ngược lại lưu vào file SignUp, sau đó cho mọi người lựa chọn quay về home hoặc kết thức chương trình.
+
+  findAccountByUsername: hàm tìm account có tên trùng với tên đuọc truyền vào, trả về con trỏ đến tk đó
+  changePass: yêu cầu người dùng nhập mật khẩu  mới, dùng hàm condit_pasword để kiểm tra tính hợp lệ của mk mới, nếu ko hợp lệ thì cho nhập lại, nếu hợp lệ thì lấy con trỏ hàm trả về từ hàm find treen để đổi mk
+  login_succ: hàm tạo giao diện và các chức năng khi người dùng đã đăng nhập thành công
+  login: hàm kiểm tra username tồn tại chưa, nếu rồi thì ktra mk có đúng không, đúng thì gọi hàm login_succ, sai thì thông báo và đợi nhập lại
+  condit_password: kiểm tra mk theo các yc đề bài
+  condit_username: tương tự
+  home: tạo giao diện lựa chọn
+ CreateAcc:yêu cầu người dùng nhập tên và mk sau đó gọi hàm registerAccount
+  LoginAcc: tương tự
