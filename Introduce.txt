@@ -1,21 +1,50 @@
 class BloomFilter:
   Dùnng 2 hàm hash để thiết lập bloom với ác bitset, số phần tử và số âm tính giả
   các hàm dùng để thêm tài khoản(add), kiểm tra tồn tại(contains) 
+
+
 class AccoungMange
 Chức các hàm xây dựng giao diện cũng như các hàm kiểm tra các điều kiện của mật khẩu và tên người dùng, thựuc hiện các chức năng yêu cầu:
+
   SingUp, hàm lưu các tài khoản tạo thành công
+
   Failed lưu các hàm đk không thành công
-  ChangeFile ghi lại mật khẩu cũ vào file trước đó(cách này chưa tối ưu lắm, nghe đồn có cách hay hơn )
+
+  ChangeFile :có chức năng thay đổi mật khẩu của một người dùng trong tệp tin "Success.txt",nhận hai tham số đầu vào: username là tên người dùng cần thay đổi mật khẩu và new_Password là mật khẩu mới.Mở file Successed.txt lưu các tk đã tạo thành công để đọc, đọc từng dọc và tách username với mật khẩu bằng dấu cách,kiểm tra xem tên người dùng có trùng với tham số username truyền vào hay không,nếu có thì thay đổi mật khẩu người dùng bằng tham số new_Password. tạo vector line để lưu các dòng đã đọc từ tệp, Success.txt, đóng file lại , sau đó mở lên lại với chế độ để ghi, ghi lại các dòng từ vector line đã xử lí trước đó vào lại file Successed.txt.
+
   checkWeak:kiểm tra mật khẩu có nằm trong file mật khẩu yếu không
-  registerAccount: dùng các hàm condit_password và condit_username và bộ lọc Bloom Kiểm tra các điều kiện của mật khẩu và tên người dùng để taajo tài khoản, nếu tên đã tồn tại hoặc các nguyên tắc khác bị vi phạm thì không tạo đưuojc, lưu tài khoản không tạo được vào file Failed.txt,ngươc và cho mọi người chọn trở về home;
-ngược lại lưu vào file SignUp, sau đó cho mọi người lựa chọn quay về home hoặc kết thức chương trình.
+
+  registerAccount: dùng các hàm condit_password và condit_username và bộ lọc Bloom Kiểm tra các điều kiện của mật khẩu và tên người dùng để taajo tài khoản, nếu tên đã tồn tại hoặc các nguyên tắc khác bị vi phạm thì không tạo đưuojc, lưu tài khoản không tạo được vào file 
+
+Failed.txt,ngươc và cho mọi người chọn trở về home;
+ngược lại lưu vào file Successed, sau đó cho mọi người lựa chọn quay về home hoặc kết thức chương trình.
 
   findAccountByUsername: hàm tìm account có tên trùng với tên đuọc truyền vào, trả về con trỏ đến tk đó
-  changePass: yêu cầu người dùng nhập mật khẩu  mới, dùng hàm condit_pasword để kiểm tra tính hợp lệ của mk mới, nếu ko hợp lệ thì cho nhập lại, nếu hợp lệ thì lấy con trỏ hàm trả về từ hàm find treen để đổi mk
+  changePass: yêu cầu người dùng nhập mật khẩu  mới, dùng hàm condit_pasword để kiểm tra tính hợp lệ của mk mới, nếu ko hợp lệ thì cho nhập lại, nếu hợp lệ thì lấy con trỏ hàm trả về từ hàm find treen để đổi mk, sau đó gọi hàm ChangeFile để thay đổi mật khẩu đã lưu trong file Successed.
+
   login_succ: hàm tạo giao diện và các chức năng khi người dùng đã đăng nhập thành công
+
   login: hàm kiểm tra username tồn tại chưa, nếu rồi thì ktra mk có đúng không, đúng thì gọi hàm login_succ, sai thì thông báo và đợi nhập lại
+
   condit_password: kiểm tra mk theo các yc đề bài
+
   condit_username: tương tự
+
   home: tạo giao diện lựa chọn
+
  CreateAcc:yêu cầu người dùng nhập tên và mk sau đó gọi hàm registerAccount
-  LoginAcc: tương tự
+
+  LoginAcc: tương tự như CreateAcc: khi người dùng nhập tên và mk vào thì sẽ gọi hàm thành phần contain trong bloom để kiểm tra xem tên người dùng có tồn tại không, nếu có thì kiểm tra xem mật khẩu đầu vào có trùng với mật khẩu đưojc lưu trong hash không. Còn lại, báo lỗi không tìm thấy.
+
+push_loom: tải lại các tài khoản đã tạo thành công từ file Successed.txt vào bloom mỗi lần chương trình được khởi động lại,.
+clear_bloom: set bloom về trạng thái rỗng tất cả, đồng thời, xóa các tài khoản đã lưu trên file Successed và Failed.
+
+multiple_register: hàm đọc từng dòng chứa username và password trong file SignUp.txt và kiểm tra từng username và password bằng hàm check_for_multiple, nếu thỏa điều kiện tạo tài khoản thì username và password được lưu vào file Successrd.txt và vào bloom, ngược lại thì lưu vào file Failed;
+
+check(for(multiple: kiểm tra xem username và password đầu vào có thỏa yêu cầu không, dường như giống với 2 hàm condit_username và condit_password, khác ở chổ hàm này không in ra các thông báo về vi phạm, đồng thời khi đọc file, cần tạo thêm biến dummy cho trường hợp mật khẩu hoặc tên có dấu cách nhưng vẫn thỏa các điều kiện khác, vì vậy từng dòng phải truyền vào là >>username >> password >> dummy. Nếu dummy không rỗng, có nghĩa là tên hoặc mật khẩu đã có khoảng trắng thì hàm trả về false, ngược lại thì kiểm tra các điều kiện còn lại.
+
+
+
+
+
+
